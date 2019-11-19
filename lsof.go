@@ -68,6 +68,20 @@ func parseLSOF(out string) (map[string]Proc, error) {
 		case 'c':
 			cp.Name = value
 
+		case 'f':
+			/*
+			  lsof:	ID    field description
+				 a    access: r = read; w = write; u = read/write
+				 c    command name
+				 C    file struct share count
+				 d    device character code
+				 D    major/minor device number as 0x<hex>
+				 f    file descriptor (always selected)
+
+				mac platform ,lsof version revision: 4.89, file descriptor (always selected)
+			 */
+			continue
+
 		default:
 			return nil, fmt.Errorf("unexpected lsof field: %c in %#v", field, value)
 		}
